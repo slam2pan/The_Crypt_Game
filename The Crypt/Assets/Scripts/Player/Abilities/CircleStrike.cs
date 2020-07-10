@@ -4,16 +4,63 @@ using UnityEngine;
 
 public class CircleStrike : Abilities
 {
+    public GameObject defaultShotPrefab;
+    private int numProjectiles = 8;
+    private float shotVelocity = 10f;
+
     public CircleStrike() 
     {
         this.abilityName = "CircleStrike";
         this.abilityDescription = "Shoot projectiles in every direction";
+        this.abilityCooldown = 5f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Shoot();
+        }
     }
 
+    // Fire shots in every 45 degree angle
+    void Shoot() {
+        if (!this.onCooldown) 
+        {
+            onCooldown = true;
+            float angleStep = 360f / numProjectiles;
+            float angle = 0f;
+            List<GameObject> allPellets = new List<GameObject>();
+
+            for (int i = 0; i < numProjectiles; i++)
+            {
+                Vector2 shotDirection;
+                // Must convert degrees to radians
+                shotDirection.x = Mathf.Cos((angle * Mathf.PI) / 180);
+                shotDirection.y = Mathf.Sin((angle * Mathf.PI) / 180);
+               
+                Debug.Log(shotDirection);
+                Debug.Log(angle);
+
+                GameObject onePellet = Instantiate(defaultShotPrefab, (Vector2)transform.position + (shotDirection * 0.3f), Quaternion.identity);
+                onePellet.GetComponent<Rigidbody2D>().velocity = shotDirection * shotVelocity;
+                allPellets.Add(onePellet);
+
+                angle += angleStep;
+            }
+
+            StartCoroutine(putOnCooldown(this.abilityCooldown, allPellets));
+        }
+    }
+
+    // Overloaded method
+    protected IEnumerator putOnCooldown(float abilityCooldown, List<GameObject> allPellets)
+    {
+        yield return new WaitForSeconds(abilityCooldown);
+        onCooldown = false;
+        foreach (GameObject pellet in allPellets) {
+            Destroy(pellet);
+        }
+    }
 }

@@ -24,7 +24,6 @@ public class DefaultShot : MonoBehaviour
         Vector2 worldMousePosition = Camera.main.ScreenToWorldPoint(shootDirection);
         Vector2 direction = worldMousePosition - (Vector2)transform.position;
         direction.Normalize();
-        Debug.Log(direction);
 
         GameObject defaultShot = Instantiate(defaultShotPrefab, (Vector2)transform.position + (direction * 0.3f), Quaternion.identity);
         defaultShot.GetComponent<Rigidbody2D>().velocity = direction * shotVelocity;
