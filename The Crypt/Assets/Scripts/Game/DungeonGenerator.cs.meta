@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 8ea03db19874c9a44b6aae2391cf2ec2
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - cubeRoom: {fileID: 3566857940007420928, guid: ee2a18df5ac61ae469fae4f3f5af2d9e,
+      type: 3}
+  - hallway: {fileID: 6581492917825564236, guid: 4eb2008272523fc448e2abeb894094a4,
+      type: 3}
+  - playerPrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
