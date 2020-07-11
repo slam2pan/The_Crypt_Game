@@ -11,6 +11,7 @@ public class TriangleEnemy : MonoBehaviour
     private float maxSpeed = 5f;
     private Rigidbody2D enemyRb;
     private GameObject player;
+    public GameObject enemyExplosion;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +43,8 @@ public class TriangleEnemy : MonoBehaviour
     {
         if (collision.gameObject.name.Equals("DefaultShot(Clone)"))
         {
+            GameObject explosionEffect = Instantiate(enemyExplosion, transform.position, Quaternion.identity);
+            Destroy(explosionEffect, 0.5f);
             Destroy(gameObject);
             Destroy(collision.gameObject);
         }

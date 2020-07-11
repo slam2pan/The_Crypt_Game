@@ -5,6 +5,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private float speed = 5f;
+
+    public float Speed {
+        get {return speed; }
+        set {speed = value; }
+    }
+
     private float maxHealth = 10;
     private float playerHealth;
     public float Health
@@ -46,7 +52,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void ChangeHealth(int amount)
+    public void ChangeHealth(int amount)
     {
         playerHealth = Mathf.Clamp(playerHealth + amount, 0, maxHealth);
         HealthBar.instance.SetValue(playerHealth / (float)maxHealth);
