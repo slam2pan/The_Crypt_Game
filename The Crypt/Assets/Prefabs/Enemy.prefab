@@ -101,6 +101,7 @@ MonoBehaviour:
     m_Bits: 256
   enemyExplosion: {fileID: 8003554176028294351, guid: 818cfbbb521889d40931a1f2cd937ee7,
     type: 3}
+  explosionSound: {fileID: 8300000, guid: 1d0882505de9622448bff8ff4b2ecf8c, type: 3}
 --- !u!50 &5467879625762956057
 Rigidbody2D:
   serializedVersion: 4

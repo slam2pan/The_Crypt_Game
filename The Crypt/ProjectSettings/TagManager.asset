@@ -17,7 +17,7 @@ TagManager:
   - Player
   - Background
   - Enemy
-  - 
+  - Score
   - 
   - 
   - 
@@ -47,4 +47,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3471340697
+    locked: 0
+  - name: Score
+    uniqueID: 3744311669
     locked: 0

@@ -42,6 +42,9 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         gameIsPaused = false;
+        GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager.SetGameActive(false);
+        Score.ResetScore();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 

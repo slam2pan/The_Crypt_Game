@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Recovery : Abilities
 {
     
     private PlayerController playerController;
+    private Image imageCooldown;
+
     public Recovery()
     {
         this.abilityName = "Recovery";
@@ -16,6 +19,7 @@ public class Recovery : Abilities
     void Start()
     {
         playerController = GameObject.Find("Player(Clone)").GetComponent<PlayerController>();
+        imageCooldown = GameObject.Find("ECooldown").GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -23,19 +27,22 @@ public class Recovery : Abilities
     {
         if (!this.onCooldown)
         {
+            imageCooldown.fillAmount = 0;
             if (Input.GetKeyDown(KeyCode.E))
             {
                 recoverHealth();
                 onCooldown = true;
-                StartCoroutine(putOnCooldown(abilityCooldown));
+                StartCoroutine(PutOnCooldown(abilityCooldown));
             }
+        } else {
+            CooldownTimer(imageCooldown, abilityCooldown);
         }
     }
 
     private void recoverHealth()
     {
         playerController.ChangeHealth(1);
-        playerController.Speed -= 2f;
+        playerController.Speed -= 1f;
         StartCoroutine(DecreaseSpeed(playerController));
     }
 

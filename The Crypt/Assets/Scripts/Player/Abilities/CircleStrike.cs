@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CircleStrike : Abilities
 {
     public GameObject defaultShotPrefab;
+    private Image imageCooldown;
     private int numProjectiles = 8;
     private float shotVelocity = 10f;
+    private AudioManager audioManager;
 
     public CircleStrike()
     {
@@ -15,17 +18,26 @@ public class CircleStrike : Abilities
         this.abilityCooldown = 5f;
     }
 
+    void Start()
+    {
+        imageCooldown = GameObject.Find("QCooldown").GetComponent<Image>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (!this.onCooldown)
         {
+            imageCooldown.fillAmount = 0;
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 Shoot();
                 onCooldown = true;
-                StartCoroutine(putOnCooldown(this.abilityCooldown));
+                StartCoroutine(PutOnCooldown(this.abilityCooldown));
             }
+        } else {
+            CooldownTimer(imageCooldown, abilityCooldown);
         }
     }
 
@@ -49,6 +61,8 @@ public class CircleStrike : Abilities
 
             angle += angleStep;
         }
+
+        audioManager.Play("CircleStrike");
 
         StartCoroutine(destroyShot(allPellets));
     }

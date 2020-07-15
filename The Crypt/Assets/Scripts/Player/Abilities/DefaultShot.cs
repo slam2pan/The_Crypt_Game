@@ -6,6 +6,12 @@ public class DefaultShot : Abilities
 {
     private float shotVelocity = 10f;
     public GameObject defaultShotPrefab;
+    private AudioManager audioManager;
+
+    void Start()
+    {
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+    }
 
     public DefaultShot()
     {
@@ -23,7 +29,7 @@ public class DefaultShot : Abilities
             {
                 Shoot();
                 onCooldown = true;
-                StartCoroutine(putOnCooldown(abilityCooldown));
+                StartCoroutine(PutOnCooldown(abilityCooldown));
             }
         }
     }
@@ -39,13 +45,9 @@ public class DefaultShot : Abilities
 
         GameObject defaultShot = Instantiate(defaultShotPrefab, (Vector2)transform.position + (direction * 0.3f), Quaternion.identity);
         defaultShot.GetComponent<Rigidbody2D>().velocity = direction * shotVelocity;
-
-        StartCoroutine(DestroyShot(defaultShot));
+        
+        audioManager.Play("DefaultShot");
+        Destroy(defaultShot, 0.3f);
     }
 
-    IEnumerator DestroyShot(GameObject shotObject)
-    {
-        yield return new WaitForSeconds(0.15f);
-        Destroy(shotObject);
-    }
 }

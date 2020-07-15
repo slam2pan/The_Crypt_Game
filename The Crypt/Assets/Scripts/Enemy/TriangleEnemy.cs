@@ -11,7 +11,10 @@ public class TriangleEnemy : MonoBehaviour
     private float maxSpeed = 5f;
     private Rigidbody2D enemyRb;
     private GameObject player;
+    private GameManager gameManager;
     public GameObject enemyExplosion;
+    private AudioManager audioManager;
+
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +22,8 @@ public class TriangleEnemy : MonoBehaviour
         enemyRb = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player(Clone)");
         speed = Random.Range(minSpeed, maxSpeed);
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void Update()
@@ -43,10 +48,21 @@ public class TriangleEnemy : MonoBehaviour
     {
         if (collision.gameObject.name.Equals("DefaultShot(Clone)"))
         {
-            GameObject explosionEffect = Instantiate(enemyExplosion, transform.position, Quaternion.identity);
-            Destroy(explosionEffect, 0.5f);
+            audioManager.Play("TriangleExplosion");
             Destroy(gameObject);
             Destroy(collision.gameObject);
+            GameObject explosionEffect = Instantiate(enemyExplosion, transform.position, Quaternion.identity);
+            ScorePopup.Create(transform.position, 10);
+            Destroy(explosionEffect, 0.5f); 
+        }
+    }
+
+    // To avoid double count on the score
+    void OnDestroy()
+    {
+        if (gameManager.levelOver == false && gameManager.IsGameActive())
+        {
+            Score.AddToScore(10);
         }
     }
 }

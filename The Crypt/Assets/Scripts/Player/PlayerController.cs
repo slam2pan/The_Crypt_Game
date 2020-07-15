@@ -21,15 +21,14 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRb;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        playerRb = GetComponent<Rigidbody2D>();
         playerHealth = maxHealth;
     }
 
-    void Update()
+    void Start()
     {
-        
+        playerRb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame

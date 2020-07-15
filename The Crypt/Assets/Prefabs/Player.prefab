@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -8511864600968944471}
   - component: {fileID: -1446447739908595791}
   - component: {fileID: -3360562439801806230}
+  - component: {fileID: 5870126257662187057}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -186,6 +187,23 @@ MonoBehaviour:
   abilityName: Recovery
   abilityDescription: Regenerate 1 hp, but lose movement speed for a few seconds
   abilityCooldown: 10
+--- !u!114 &5870126257662187057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132735096504844045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b73591edbde1ce4da52cb006d5e1f65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityName: BigBoost
+  abilityDescription: Give increased movement speed for a period of time
+  abilityCooldown: 20
+  audioManager: {fileID: 1564463060332467797, guid: 6c5d33db5fec88d4a846e48c911a1325,
+    type: 3}
 --- !u!1 &2710133142308320986
 GameObject:
   m_ObjectHideFlags: 0

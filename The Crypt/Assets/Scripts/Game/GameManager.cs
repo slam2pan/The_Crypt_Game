@@ -12,10 +12,13 @@ public class GameManager : MonoBehaviour
         get { return level; }
         set { level = value; }
     }
-    private bool gameActive;
+
+    public bool gameActive;
+    public bool levelOver;
 
     private static GameObject levelInstance;
     private TextMeshProUGUI levelText;
+    private TextMeshProUGUI scoreText;
     private PlayerController player;
 
     void Awake()
@@ -30,7 +33,12 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    
+    void Start()
+    {
+        gameActive = true;
+    }
+    
     void Update()
     {
         if (gameActive)
@@ -38,16 +46,32 @@ public class GameManager : MonoBehaviour
             levelText = GameObject.Find("LevelText").GetComponent<TextMeshProUGUI>();
             levelText.SetText("Level: " + level);
 
+            scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
+            scoreText.SetText("Score: " + Score.GetScore());
+
             if (player == null)
             {
                 player = GameObject.Find("Player(Clone)").GetComponent<PlayerController>();
-            }
+            }        
             
             if (player.Health == 0)
             {
                 gameActive = false;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
+        }
+    }
+
+    public bool IsGameActive() {
+        return gameActive;
+    }
+
+    public void SetGameActive(bool active)
+    {
+        gameActive = active;
+        if (!active)
+        {
+            level = 1;
         }
     }
 }

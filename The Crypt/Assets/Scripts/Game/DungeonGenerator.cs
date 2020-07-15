@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class DungeonGenerator : MonoBehaviour
 {
-    [SerializeField] private int numberOfRooms;
+    private int numberOfRooms = 8;
     private Room[,] rooms;
-    [SerializeField] GameObject cubeRoom;
-    [SerializeField] GameObject hallway;
-    [SerializeField] GameObject playerPrefab;
-    [SerializeField] GameObject enemyPrefab;
-    [SerializeField] GameObject teleporterPrefab;
+    public GameObject cubeRoom;
+    public GameObject hallway;
+    public GameObject playerPrefab;
+    public GameObject enemyPrefab;
+    public GameObject teleporterPrefab;
+    private GameManager gameManager;
 
     private int minEnemies = 2;
     private int maxEnemies = 6;
 
     void Start() {
         GenerateDungeon();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager.SetGameActive(true);
     }
 
     private Room GenerateDungeon() {
