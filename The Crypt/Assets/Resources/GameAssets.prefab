@@ -45,3 +45,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scorePopupPrefab: {fileID: 724692392975891775, guid: 844f4c41442d04946970275aa19d6771,
     type: 3}
+  playerPrefab: {fileID: 1132735096504844045, guid: 1fabd5678d9211849912f0d339c9d408,
+    type: 3}
+  enemyPrefab: {fileID: 257813437149568617, guid: 83447ac594b335640bf431729d70ac42,
+    type: 3}
+  teleporterPrefab: {fileID: 1919980742528735503, guid: 35434c3f17aa7444ba96af05d6e7a2cf,
+    type: 3}
+  triangleExplosion: {fileID: 8003554176028294351, guid: 818cfbbb521889d40931a1f2cd937ee7,
+    type: 3}
+  defaultShot: {fileID: 8317063510364168797, guid: 1c67980d978e81d4ead741752338f92b,
+    type: 3}
+  dropIcon: {fileID: 1524380334669180355, guid: ac6e56554e0ddc642aed13b56777ce60,
+    type: 3}
+  firePS: {fileID: 6060811500953975000, guid: c9b50bbe0079476409a62071feff8427, type: 3}

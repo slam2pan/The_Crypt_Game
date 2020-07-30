@@ -17,4 +17,11 @@ public class GameAssets : MonoBehaviour
     }
 
     public GameObject scorePopupPrefab;
+    public GameObject playerPrefab;
+    public GameObject enemyPrefab;
+    public GameObject teleporterPrefab;
+    public GameObject triangleExplosion;
+    public GameObject defaultShot;
+    public GameObject dropIcon;
+    public GameObject firePS;
 }

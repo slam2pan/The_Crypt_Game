@@ -7,19 +7,20 @@ public class Recovery : Abilities
 {
     
     private PlayerController playerController;
-    private Image imageCooldown;
 
     public Recovery()
     {
         this.abilityName = "Recovery";
         this.abilityDescription = "Regenerate 1 hp, but lose movement speed for a few seconds";
         this.abilityCooldown = 10f;
+        this.abilityDuration = 6f;
     }
 
     void Start()
     {
         playerController = GameObject.Find("Player(Clone)").GetComponent<PlayerController>();
-        imageCooldown = GameObject.Find("ECooldown").GetComponent<Image>();
+        imageCooldown = GameObject.Find(keyCode.ToString() + "Cooldown").GetComponent<Image>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -28,7 +29,7 @@ public class Recovery : Abilities
         if (!this.onCooldown)
         {
             imageCooldown.fillAmount = 0;
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(keyCode))
             {
                 recoverHealth();
                 onCooldown = true;
@@ -44,11 +45,12 @@ public class Recovery : Abilities
         playerController.ChangeHealth(1);
         playerController.Speed -= 1f;
         StartCoroutine(DecreaseSpeed(playerController));
+        audioManager.Play("Recovery");
     }
 
     private IEnumerator DecreaseSpeed(PlayerController playerController) 
     {
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(abilityDuration);
         playerController.Speed = 5f;
     }
 }

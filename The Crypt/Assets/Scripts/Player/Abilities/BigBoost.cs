@@ -7,8 +7,6 @@ public class BigBoost : Abilities
 {
 
     private PlayerController playerController;
-    private Image imageCooldown;
-    private AudioManager audioManager;
 
     public BigBoost()
     {
@@ -20,7 +18,7 @@ public class BigBoost : Abilities
 
     void Start()
     {
-        imageCooldown = GameObject.Find("RCooldown").GetComponent<Image>();
+        imageCooldown = GameObject.Find(keyCode.ToString() + "Cooldown").GetComponent<Image>();
         playerController = GameObject.Find("Player(Clone)").GetComponent<PlayerController>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
@@ -31,7 +29,7 @@ public class BigBoost : Abilities
         if (!this.onCooldown)
         {
             imageCooldown.fillAmount = 0;
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(keyCode))
             {
                 ModifySpeed();
                 onCooldown = true;

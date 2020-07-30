@@ -5,12 +5,12 @@ using UnityEngine;
 public class DefaultShot : Abilities
 {
     private float shotVelocity = 10f;
-    public GameObject defaultShotPrefab;
-    private AudioManager audioManager;
+    private GameObject defaultShotPrefab;
 
     void Start()
     {
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        defaultShotPrefab = GameAssets.i.defaultShot;
     }
 
     public DefaultShot()

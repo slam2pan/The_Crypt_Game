@@ -5,11 +5,9 @@ using UnityEngine.UI;
 
 public class CircleStrike : Abilities
 {
-    public GameObject defaultShotPrefab;
-    private Image imageCooldown;
+    private GameObject defaultShotPrefab;
     private int numProjectiles = 8;
     private float shotVelocity = 10f;
-    private AudioManager audioManager;
 
     public CircleStrike()
     {
@@ -20,8 +18,9 @@ public class CircleStrike : Abilities
 
     void Start()
     {
-        imageCooldown = GameObject.Find("QCooldown").GetComponent<Image>();
+        imageCooldown = GameObject.Find(keyCode.ToString() + "Cooldown").GetComponent<Image>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        defaultShotPrefab = GameAssets.i.defaultShot;
     }
 
     // Update is called once per frame
@@ -30,7 +29,7 @@ public class CircleStrike : Abilities
         if (!this.onCooldown)
         {
             imageCooldown.fillAmount = 0;
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(keyCode))
             {
                 Shoot();
                 onCooldown = true;

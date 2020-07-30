@@ -18,9 +18,9 @@ TagManager:
   - Background
   - Enemy
   - Score
-  - 
-  - 
-  - 
+  - PostProcessing
+  - Shot
+  - Teleporter
   - 
   - 
   - 

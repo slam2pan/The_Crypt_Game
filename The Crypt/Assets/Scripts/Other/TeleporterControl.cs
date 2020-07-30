@@ -11,16 +11,13 @@ public class TeleporterControl : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        gameManager.levelOver = false;
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            gameManager.levelOver = true;
-            gameManager.Level++;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            gameManager.ChangeLevel();
         }
     }
 }
